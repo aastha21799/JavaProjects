@@ -4,10 +4,17 @@ public class Match {
     int turn;
     Game game;
     int winner;
+    Scanner scanner;
+    int rowSelected;
+    int colSelected;
+    
+    Match()
+    {
+        this.scanner = new Scanner(System.in);
+    }
 
     void StartMatch(Player playerA, Player playerB)
     {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Starting the match. Setting up the game");
         game = new Game(playerA, playerB);
@@ -23,20 +30,13 @@ public class Match {
             // Player1 is tied to zero
             // Player2 is tied to katta
 
-            int rowId = scanner.nextInt();
-            int colId = scanner.nextInt();
+            GetTileSelectionFromPlayer(playerTurn);
 
-            while (SelectionIsInValid(rowId, colId))
-            {
-                System.out.println("Player " + playerTurn + " the selected position is not valid");
-                rowId = scanner.nextInt();
-                colId = scanner.nextInt();
-            }
-
-            System.out.println("\n The selected postion " + rowId + " and " + colId + " is being marked");
+            System.out.println("\n The selected postion " + rowSelected + " and " + colSelected + " is being marked");
             
             Symbol symbol = GetPlayerSymbol(playerTurn);
-            game.board.tiles[rowId][colId].symbol =  symbol;
+            game.board.tiles[rowSelected][colSelected].symbol =  symbol;
+
             game.board.DisplayBoard();
 
             Boolean playerWonStatus = CheckIfPlayerWon(playerTurn);
@@ -127,5 +127,21 @@ public class Match {
         System.out.println("The player is not valid");
 
         return Symbol.EMPTY;
+    }
+
+    void GetTileSelectionFromPlayer(int playerTurn)
+    {
+        TakePositionInputFromPlayer();
+        while (SelectionIsInValid(rowSelected, colSelected))
+        {
+            System.out.println("Player " + playerTurn + " the selected position is not valid");
+            TakePositionInputFromPlayer();
+        }
+    }
+
+    void TakePositionInputFromPlayer()
+    {
+        rowSelected = scanner.nextInt();
+        colSelected = scanner.nextInt();
     }
 }

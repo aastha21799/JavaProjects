@@ -1,4 +1,7 @@
 public class Board {   
+
+    // Tiles are reference variables. The array values are initialized to null so tiles will be null in the next line
+    // Only the space has been reserved.
     Tile[][] tiles = new Tile[3][3];
 
     Board()
