@@ -1,7 +1,6 @@
 public class Board {   
     Tile[][] tiles = new Tile[3][3];
 
-
     Board()
     {
         for (int i = 0; i < 3; i++)
@@ -12,7 +11,6 @@ public class Board {
             }
         }
     }
-
 
     void DisplayBoard()
     {

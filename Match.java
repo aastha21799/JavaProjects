@@ -14,7 +14,7 @@ public class Match {
 
         turn = 1;
 
-        while (CheckIfMatchContinues())
+        while (CheckIfMatchContinues(turn))
         {
             turn = turn + 1;
             int playerTurn = ((turn) % 2) + 1;
@@ -52,21 +52,14 @@ public class Match {
         System.out.println("The game has ended");
     }
 
-    private boolean CheckIfMatchContinues() {
-        Board board = game.board;
-
-        for (int i = 0; i < 3; i++)
+    private boolean CheckIfMatchContinues(int turn)
+    {
+        if (turn >= 9)
         {
-            for (int j = 0; j < 3; j++)
-            {
-                if (board.tiles[i][j].symbol == Symbol.EMPTY)
-                {
-                    return true;
-                }
-            }
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     private Boolean CheckIfPlayerWon(int player)
