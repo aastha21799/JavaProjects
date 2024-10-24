@@ -62,6 +62,8 @@ public class Match {
         return true;
     }
 
+    // This should be the logic of game and not the match
+    // Match should be responsible for taking input and managing turns
     private Boolean CheckIfPlayerWon(int player)
     {
         Board board = game.board;
